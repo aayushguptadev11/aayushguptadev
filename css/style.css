@@ -1,0 +1,286 @@
+/* Style.css  */
+
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --primary: #030a16;
+    --secondary: #323946;
+    --disabled: #fff3;
+    --green: #7cf03d;
+    --white: #fff;
+    --blue: #1689ff;
+}
+
+/* Focus visible for keyboard users */
+:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+/* Skip to main content (accessibility) */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--green);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    z-index: 9999;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Ancizar Serif", serif;
+}
+
+body, html {
+    color: var(--white);
+    background-color: black;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+body.no-scroll {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.main-container {
+    max-width: 700px;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.brand-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.brand-info img {
+    transition: all ease 0.3s;
+}
+
+.brand-info img:hover {
+    border: 2px solid var(--blue);
+    background-color: var(--primary);
+    scale: 120%;
+    box-shadow: 2px 2px 2px var(--green), -2px 2px 2px var(--blue), 2px -2px 2px var(--blue), -2px -2px 2px var(--green);
+}
+
+.brand-info h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.brand-info h2::first-letter {
+    font-size: 2.2rem;
+    color: var(--blue);
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    font-size: 2rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#overlay {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+#menu-toggle:checked ~ #overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: 7rem;
+    height: 100dvh;
+    background: var(--primary);
+    opacity: 1;
+    pointer-events: none;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 2rem 0;
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: all 0.4s ease;
+}
+
+#menu-toggle:checked ~ nav {
+    transform: translateX(0%);
+}
+
+nav a {
+    text-align: center;
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    border: 5px solid var(--secondary);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--white);
+    opacity: 0;
+    transform: translateX(150%);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+nav a:hover {
+    scale: 105%;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    background-color: var(--blue);
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+nav a:hover:after {
+    width: 100%;
+}
+
+#menu-toggle:checked ~ nav a{
+    opacity: 1;
+    transform: translateX(0%);
+    transition-delay: calc(var(--i) * 0.2s);
+}
+
+@media screen and (width >= 1024px) {
+    .main-container {
+        max-width: 950px;
+    }
+
+    header {
+        position: static;
+    }
+
+    .brand-info {
+        gap: 20px;
+    }
+
+    .brand-info img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .brand-info h2 {
+        font-size: 2.5rem;
+    }
+
+    .brand-info h2::first-letter {
+    font-size: 3rem;
+    color: var(--blue);
+}
+
+    #menu-toggle {
+        pointer-events: none;
+    }
+
+    .menu-icon {
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        position: static;
+        transform: translateX(0%);
+    }
+
+    nav a {
+        padding: 0;
+        font-size: 1.5rem;
+        border: none;
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    nav a:hover {
+        color: var(--green);
+    }
+}
+
+@media screen and (width >= 1250px) {
+    .main-container {
+        max-width: 1200px;
+    }
+
+    .brand-info {
+        gap: 20px;
+    }
+
+    .brand-info img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .brand-info h2 {
+        font-size: 3rem;
+    }
+
+    .brand-info h2::first-letter {
+        font-size: 3.5rem;
+        color: var(--blue);
+    }
+
+    nav {
+        gap: 2.5rem;
+    }
+
+    nav a {
+        font-size: 2rem;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--secondary);
+    color: var(--disabled);
+    font-size: 0.9rem;
+}
+

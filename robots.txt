@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aayushguptadev11.github.io/aayushguptadev/sitemap.xml
